@@ -1,0 +1,671 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>University Admission Form</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Main Form Container -->
+    <div class="container" id="mainContainer">
+        <!-- Header -->
+        <div class="header">
+            <h1>🎓 University Admission</h1>
+            <p>Begin Your Academic Journey with Excellence</p>
+        </div>
+
+        <!-- Progress Steps -->
+        <div class="progress-container">
+            <div class="progress-steps">
+                <div class="step" data-step="1">
+                    <div class="step-icon active">👤</div>
+                    <span class="step-title">Personal Info</span>
+                </div>
+                <div class="chevron">›</div>
+                <div class="step" data-step="2">
+                    <div class="step-icon inactive">🎓</div>
+                    <span class="step-title">Education</span>
+                </div>
+                <div class="chevron">›</div>
+                <div class="step" data-step="3">
+                    <div class="step-icon inactive">🏆</div>
+                    <span class="step-title">Course & Program</span>
+                </div>
+                <div class="chevron">›</div>
+                <div class="step" data-step="4">
+                    <div class="step-icon inactive">📄</div>
+                    <span class="step-title">Review</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Form Container -->
+        <div class="form-container">
+            <div class="form-card">
+                <form id="admissionForm">
+                    <!-- Step 1: Personal Information -->
+                    <div class="form-section active" data-section="1">
+                        <h2 class="form-title">Personal Information</h2>
+                        
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label class="form-label" for="fullName">Full Name</label>
+                                <input type="text" id="fullName" name="fullName" class="form-input" placeholder="Enter your full name">
+                                <div class="error-message" id="fullNameError"></div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label class="form-label" for="email">Email Address</label>
+                                <input type="email" id="email" name="email" class="form-input" placeholder="Enter your email">
+                                <div class="error-message" id="emailError"></div>
+                            </div>
+                        </div>
+
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label class="form-label" for="phone">Phone Number</label>
+                                <input type="tel" id="phone" name="phone" class="form-input" placeholder="Enter your phone number">
+                                <div class="error-message" id="phoneError"></div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label class="form-label" for="dateOfBirth">Date of Birth</label>
+                                <input type="date" id="dateOfBirth" name="dateOfBirth" class="form-input">
+                                <div class="error-message" id="dateOfBirthError"></div>
+                            </div>
+                        </div>
+
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label class="form-label" for="gender">Gender</label>
+                                <select id="gender" name="gender" class="form-select">
+                                    <option value="">Select gender</option>
+                                    <option value="male">Male</option>
+                                    <option value="female">Female</option>
+                                    <option value="other">Other</option>
+                                </select>
+                                <div class="error-message" id="genderError"></div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label class="form-label" for="nationality">Nationality</label>
+                                <input type="text" id="nationality" name="nationality" class="form-input" placeholder="Enter your nationality">
+                                <div class="error-message" id="nationalityError"></div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label" for="address">Complete Address</label>
+                            <input type="text" id="address" name="address" class="form-input" placeholder="Enter your complete address">
+                            <div class="error-message" id="addressError"></div>
+                        </div>
+                    </div>
+
+                    <!-- Step 2: Education -->
+                    <div class="form-section" data-section="2">
+                        <h2 class="form-title">Educational Background</h2>
+                        
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label class="form-label" for="highSchoolName">High School/College Name</label>
+                                <input type="text" id="highSchoolName" name="highSchoolName" class="form-input" placeholder="Enter institution name">
+                                <div class="error-message" id="highSchoolNameError"></div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label class="form-label" for="graduationYear">Graduation Year</label>
+                                <input type="number" id="graduationYear" name="graduationYear" class="form-input" placeholder="e.g., 2024" min="2000" max="2030">
+                                <div class="error-message" id="graduationYearError"></div>
+                            </div>
+                        </div>
+
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label class="form-label" for="cgpa">CGPA/Percentage</label>
+                                <input type="number" id="cgpa" name="cgpa" class="form-input" placeholder="e.g., 3.5 or 85%" step="0.01" min="0" max="4">
+                                <div class="error-message" id="cgpaError"></div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label class="form-label" for="previousDegree">Previous Degree (if any)</label>
+                                <select id="previousDegree" name="previousDegree" class="form-select">
+                                    <option value="">Select previous degree</option>
+                                    <option value="high-school">High School</option>
+                                    <option value="associate">Associate Degree</option>
+                                    <option value="bachelor">Bachelor's Degree</option>
+                                    <option value="master">Master's Degree</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-group" id="universityGroup" style="display: none;">
+                            <label class="form-label" for="university">Previous University/Institution</label>
+                            <input type="text" id="university" name="university" class="form-input" placeholder="Enter university name">
+                        </div>
+                    </div>
+
+                    <!-- Step 3: Course & Program -->
+                    <div class="form-section" data-section="3">
+                        <h2 class="form-title">Course & Program Selection</h2>
+                        
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label class="form-label" for="faculty">Faculty</label>
+                                <select id="faculty" name="faculty" class="form-select">
+                                    <option value="">Select faculty</option>
+                                    <option value="Computer Science & IT">Computer Science & IT</option>
+                                    <option value="Engineering">Engineering</option>
+                                    <option value="Agriculture & Life Sciences">Agriculture & Life Sciences</option>
+                                    <option value="Business Administration">Business Administration</option>
+                                    <option value="Natural Sciences">Natural Sciences</option>
+                                    <option value="Arts & Humanities">Arts & Humanities</option>
+                                    <option value="Medicine & Health Sciences">Medicine & Health Sciences</option>
+                                    <option value="Social Sciences">Social Sciences</option>
+                                </select>
+                                <div class="error-message" id="facultyError"></div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label class="form-label" for="course">Course</label>
+                                <select id="course" name="course" class="form-select" disabled>
+                                    <option value="">Select course</option>
+                                </select>
+                                <div class="error-message" id="courseError"></div>
+                            </div>
+                        </div>
+
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label class="form-label" for="degreeLevel">Degree Level</label>
+                                <select id="degreeLevel" name="degreeLevel" class="form-select">
+                                    <option value="">Select degree level</option>
+                                    <option value="bachelor">Bachelor's Degree</option>
+                                    <option value="master">Master's Degree</option>
+                                    <option value="phd">PhD</option>
+                                </select>
+                                <div class="error-message" id="degreeLevelError"></div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label class="form-label" for="semester">Preferred Semester</label>
+                                <select id="semester" name="semester" class="form-select">
+                                    <option value="">Select semester</option>
+                                    <option value="spring">Spring</option>
+                                    <option value="summer">Summer</option>
+                                    <option value="fall">Fall</option>
+                                </select>
+                                <div class="error-message" id="semesterError"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Step 4: Review -->
+                    <div class="form-section" data-section="4">
+                        <h2 class="form-title">Review Your Information</h2>
+                        
+                        <div class="review-section">
+                            <div class="review-header">
+                                👤 Personal Information
+                            </div>
+                            <div class="review-content" id="personalReview">
+                                <!-- Personal info will be populated here -->
+                            </div>
+                        </div>
+
+                        <div class="review-section">
+                            <div class="review-header">
+                                🎓 Educational Background
+                            </div>
+                            <div class="review-content" id="educationReview">
+                                <!-- Education info will be populated here -->
+                            </div>
+                        </div>
+
+                        <div class="review-section">
+                            <div class="review-header">
+                                🏆 Course & Program
+                            </div>
+                            <div class="review-content" id="courseReview">
+                                <!-- Course info will be populated here -->
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Navigation -->
+                    <div class="navigation" id="navigation">
+                        <button type="button" class="btn btn-secondary" id="prevBtn" disabled>
+                            ← Previous
+                        </button>
+                        <button type="button" class="btn btn-primary" id="nextBtn">
+                            Next →
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Success Message Container -->
+    <div class="success-container" id="successContainer">
+        <div class="success-card">
+            <div class="success-icon"></div>
+            <h2 class="success-title">Application Submitted!</h2>
+            <p class="success-description" id="successText">Thank you! Your admission application has been received.</p>
+            <p class="success-details" id="contactDetails">We'll contact you within 2-3 business days.</p>
+            <div class="success-highlight">
+                <p>🎓 Welcome to your academic journey!</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Course data
+        const coursesByFaculty = {
+            'Computer Science & IT': [
+                'Computer Science',
+                'Software Engineering',
+                'Information Technology',
+                'Cybersecurity',
+                'Data Science',
+                'Artificial Intelligence'
+            ],
+            'Engineering': [
+                'Electrical Engineering',
+                'Mechanical Engineering',
+                'Civil Engineering',
+                'Chemical Engineering',
+                'Aerospace Engineering',
+                'Biomedical Engineering'
+            ],
+            'Agriculture & Life Sciences': [
+                'Agricultural Engineering',
+                'Sustainable Agriculture',
+                'Plant Sciences',
+                'Animal Sciences',
+                'Environmental Science',
+                'Food Technology',
+                'Horticulture'
+            ],
+            'Business Administration': [
+                'Business Administration',
+                'Marketing',
+                'Finance',
+                'Human Resources',
+                'International Business',
+                'Entrepreneurship'
+            ],
+            'Natural Sciences': [
+                'Physics',
+                'Chemistry',
+                'Biology',
+                'Mathematics',
+                'Environmental Science',
+                'Geology'
+            ],
+            'Arts & Humanities': [
+                'English Literature',
+                'History',
+                'Philosophy',
+                'Fine Arts',
+                'Music',
+                'Linguistics'
+            ],
+            'Medicine & Health Sciences': [
+                'Medicine',
+                'Nursing',
+                'Pharmacy',
+                'Dentistry',
+                'Physical Therapy',
+                'Public Health'
+            ],
+            'Social Sciences': [
+                'Psychology',
+                'Sociology',
+                'Political Science',
+                'Economics',
+                'Anthropology',
+                'International Relations'
+            ]
+        };
+
+        // Form state
+        let currentStep = 1;
+        let formData = {};
+        let isLoading = false;
+
+        // DOM elements
+        const form = document.getElementById('admissionForm');
+        const prevBtn = document.getElementById('prevBtn');
+        const nextBtn = document.getElementById('nextBtn');
+        const facultySelect = document.getElementById('faculty');
+        const courseSelect = document.getElementById('course');
+        const previousDegreeSelect = document.getElementById('previousDegree');
+        const universityGroup = document.getElementById('universityGroup');
+        const mainContainer = document.getElementById('mainContainer');
+        const successContainer = document.getElementById('successContainer');
+
+        // Initialize form
+        document.addEventListener('DOMContentLoaded', function() {
+            updateStepDisplay();
+            setupEventListeners();
+        });
+
+        function setupEventListeners() {
+            // Navigation buttons
+            prevBtn.addEventListener('click', previousStep);
+            nextBtn.addEventListener('click', nextStep);
+
+            // Faculty change handler
+            facultySelect.addEventListener('change', function() {
+                const selectedFaculty = this.value;
+                populateCourses(selectedFaculty);
+            });
+
+            // Previous degree change handler
+            previousDegreeSelect.addEventListener('change', function() {
+                const showUniversity = this.value && this.value !== 'high-school';
+                universityGroup.style.display = showUniversity ? 'block' : 'none';
+            });
+
+            // Form input handlers
+            const inputs = form.querySelectorAll('input, select');
+            inputs.forEach(input => {
+                input.addEventListener('input', clearError);
+                input.addEventListener('change', clearError);
+            });
+        }
+
+        function populateCourses(faculty) {
+            courseSelect.innerHTML = '<option value="">Select course</option>';
+            
+            if (faculty && coursesByFaculty[faculty]) {
+                courseSelect.disabled = false;
+                coursesByFaculty[faculty].forEach(course => {
+                    const option = document.createElement('option');
+                    option.value = course;
+                    option.textContent = course;
+                    courseSelect.appendChild(option);
+                });
+            } else {
+                courseSelect.disabled = true;
+            }
+            
+            // Clear course selection
+            courseSelect.value = '';
+        }
+
+        function clearError(event) {
+            const input = event.target;
+            const errorElement = document.getElementById(input.name + 'Error');
+            if (errorElement) {
+                errorElement.textContent = '';
+                input.classList.remove('error');
+            }
+        }
+
+        function validateStep(step) {
+            const errors = {};
+            clearAllErrors();
+
+            if (step === 1) {
+                // Personal information validation
+                const fullName = document.getElementById('fullName').value.trim();
+                const email = document.getElementById('email').value.trim();
+                const phone = document.getElementById('phone').value.trim();
+                const dateOfBirth = document.getElementById('dateOfBirth').value;
+                const gender = document.getElementById('gender').value;
+                const nationality = document.getElementById('nationality').value.trim();
+                const address = document.getElementById('address').value.trim();
+
+                if (!fullName) errors.fullName = 'Full name is required';
+                if (!email) errors.email = 'Email is required';
+                if (!phone) errors.phone = 'Phone is required';
+                if (!dateOfBirth) errors.dateOfBirth = 'Date of birth is required';
+                if (!gender) errors.gender = 'Gender is required';
+                if (!nationality) errors.nationality = 'Nationality is required';
+                if (!address) errors.address = 'Address is required';
+
+            } else if (step === 2) {
+                // Education validation
+                const highSchoolName = document.getElementById('highSchoolName').value.trim();
+                const graduationYear = document.getElementById('graduationYear').value;
+                const cgpa = document.getElementById('cgpa').value;
+
+                if (!highSchoolName) errors.highSchoolName = 'High school name is required';
+                if (!graduationYear) errors.graduationYear = 'Graduation year is required';
+                if (!cgpa) errors.cgpa = 'CGPA is required';
+
+            } else if (step === 3) {
+                // Course selection validation
+                const faculty = document.getElementById('faculty').value;
+                const course = document.getElementById('course').value;
+                const degreeLevel = document.getElementById('degreeLevel').value;
+                const semester = document.getElementById('semester').value;
+
+                if (!faculty) errors.faculty = 'Faculty is required';
+                if (!course) errors.course = 'Course is required';
+                if (!degreeLevel) errors.degreeLevel = 'Degree level is required';
+                if (!semester) errors.semester = 'Semester is required';
+            }
+
+            // Display errors
+            for (const [field, message] of Object.entries(errors)) {
+                showError(field, message);
+            }
+
+            return Object.keys(errors).length === 0;
+        }
+
+        function showError(field, message) {
+            const input = document.getElementById(field);
+            const errorElement = document.getElementById(field + 'Error');
+            
+            if (input && errorElement) {
+                input.classList.add('error');
+                errorElement.textContent = message;
+            }
+        }
+
+        function clearAllErrors() {
+            const errorElements = document.querySelectorAll('.error-message');
+            const inputElements = document.querySelectorAll('.form-input, .form-select');
+            
+            errorElements.forEach(el => el.textContent = '');
+            inputElements.forEach(el => el.classList.remove('error'));
+        }
+
+        function collectFormData() {
+            const inputs = form.querySelectorAll('input, select');
+            const data = {};
+            
+            inputs.forEach(input => {
+                if (input.name) {
+                    data[input.name] = input.value;
+                }
+            });
+            
+            return data;
+        }
+
+        function updateReviewSection() {
+            const data = collectFormData();
+            
+            // Personal information
+            const personalReview = document.getElementById('personalReview');
+            personalReview.innerHTML = `
+                <div class="review-item">
+                    <span class="review-label">Name:</span>
+                    <span class="review-value">${data.fullName || 'Not provided'}</span>
+                </div>
+                <div class="review-item">
+                    <span class="review-label">Email:</span>
+                    <span class="review-value">${data.email || 'Not provided'}</span>
+                </div>
+                <div class="review-item">
+                    <span class="review-label">Phone:</span>
+                    <span class="review-value">${data.phone || 'Not provided'}</span>
+                </div>
+                <div class="review-item">
+                    <span class="review-label">Date of Birth:</span>
+                    <span class="review-value">${data.dateOfBirth || 'Not provided'}</span>
+                </div>
+                <div class="review-item">
+                    <span class="review-label">Gender:</span>
+                    <span class="review-value">${data.gender || 'Not provided'}</span>
+                </div>
+                <div class="review-item">
+                    <span class="review-label">Nationality:</span>
+                    <span class="review-value">${data.nationality || 'Not provided'}</span>
+                </div>
+                <div class="review-item" style="grid-column: 1 / -1;">
+                    <span class="review-label">Address:</span>
+                    <span class="review-value">${data.address || 'Not provided'}</span>
+                </div>
+            `;
+
+            // Education information
+            const educationReview = document.getElementById('educationReview');
+            educationReview.innerHTML = `
+                <div class="review-item">
+                    <span class="review-label">High School:</span>
+                    <span class="review-value">${data.highSchoolName || 'Not provided'}</span>
+                </div>
+                <div class="review-item">
+                    <span class="review-label">Graduation Year:</span>
+                    <span class="review-value">${data.graduationYear || 'Not provided'}</span>
+                </div>
+                <div class="review-item">
+                    <span class="review-label">CGPA:</span>
+                    <span class="review-value">${data.cgpa || 'Not provided'}</span>
+                </div>
+                ${data.previousDegree ? `
+                <div class="review-item">
+                    <span class="review-label">Previous Degree:</span>
+                    <span class="review-value">${data.previousDegree}</span>
+                </div>
+                ` : ''}
+                ${data.university ? `
+                <div class="review-item">
+                    <span class="review-label">University:</span>
+                    <span class="review-value">${data.university}</span>
+                </div>
+                ` : ''}
+            `;
+
+            // Course information
+            const courseReview = document.getElementById('courseReview');
+            courseReview.innerHTML = `
+                <div class="review-item">
+                    <span class="review-label">Faculty:</span>
+                    <span class="review-value">${data.faculty || 'Not provided'}</span>
+                </div>
+                <div class="review-item">
+                    <span class="review-label">Course:</span>
+                    <span class="review-value">${data.course || 'Not provided'}</span>
+                </div>
+                <div class="review-item">
+                    <span class="review-label">Degree Level:</span>
+                    <span class="review-value">${data.degreeLevel || 'Not provided'}</span>
+                </div>
+                <div class="review-item">
+                    <span class="review-label">Semester:</span>
+                    <span class="review-value">${data.semester || 'Not provided'}</span>
+                </div>
+            `;
+        }
+
+        function updateStepDisplay() {
+            // Update sections
+            const sections = document.querySelectorAll('.form-section');
+            sections.forEach((section, index) => {
+                section.classList.toggle('active', index + 1 === currentStep);
+            });
+
+            // Update step indicators
+            const steps = document.querySelectorAll('.step');
+            steps.forEach((step, index) => {
+                const stepIcon = step.querySelector('.step-icon');
+                const stepNumber = index + 1;
+                
+                stepIcon.classList.remove('active', 'completed', 'inactive');
+                
+                if (stepNumber === currentStep) {
+                    stepIcon.classList.add('active');
+                    step.classList.add('active');
+                } else if (stepNumber < currentStep) {
+                    stepIcon.classList.add('completed');
+                    step.classList.remove('active');
+                } else {
+                    stepIcon.classList.add('inactive');
+                    step.classList.remove('active');
+                }
+            });
+
+            // Update navigation buttons
+            prevBtn.disabled = currentStep === 1;
+            
+            if (currentStep < 4) {
+                nextBtn.innerHTML = 'Next →';
+                nextBtn.className = 'btn btn-primary';
+            } else {
+                nextBtn.innerHTML = 'Submit Application';
+                nextBtn.className = 'btn btn-success';
+            }
+
+            // Update review section if on step 4
+            if (currentStep === 4) {
+                updateReviewSection();
+            }
+        }
+
+        function nextStep() {
+            if (isLoading) return;
+
+            if (currentStep < 4) {
+                if (validateStep(currentStep)) {
+                    currentStep++;
+                    updateStepDisplay();
+                }
+            } else {
+                // Submit form
+                submitForm();
+            }
+        }
+
+        function previousStep() {
+            if (currentStep > 1) {
+                currentStep--;
+                updateStepDisplay();
+            }
+        }
+
+        async function submitForm() {
+            if (!validateStep(3)) return;
+
+            const data = collectFormData();
+            
+            isLoading = true;
+            nextBtn.innerHTML = '<div class="loading-spinner"></div> Submitting...';
+            nextBtn.disabled = true;
+
+            // Simulate form submission
+            await new Promise(resolve => setTimeout(resolve, 2000));
+
+            // Update success message with user data
+            const successText = document.getElementById('successText');
+            const contactDetails = document.getElementById('contactDetails');
+            
+            successText.textContent = `Thank you, ${data.fullName}! Your admission application has been received.`;
+            contactDetails.textContent = `We'll contact you at ${data.email} within 2-3 business days.`;
+
+            // Hide main container and show success message
+            mainContainer.style.display = 'none';
+            successContainer.classList.add('active');
+
+            isLoading = false;
+        }
+    </script>
+</body>
+</html>
