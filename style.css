@@ -10,6 +10,11 @@
             min-height: 100vh;
             line-height: 1.6;
         }
+#downloadPdfBtn {
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+}
 
         .container {
             max-width: 100%;
