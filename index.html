@@ -6,8 +6,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>University Admission Form</title>
     <link rel="stylesheet" href="style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
 </head>
 <body>
+
     <!-- Main Form Container -->
     <div class="container" id="mainContainer">
         <!-- Header -->
@@ -249,6 +252,7 @@
 
     <!-- Success Message Container -->
     <div class="success-container" id="successContainer">
+        
         <div class="success-card">
             <div class="success-icon"></div>
             <h2 class="success-title">Application Submitted!</h2>
@@ -256,12 +260,17 @@
             <p class="success-details" id="contactDetails">We'll contact you within 2-3 business days.</p>
             <div class="success-highlight">
                 <p>🎓 Welcome to your academic journey!</p>
+                <button id="downloadPdfBtn" class="btn btn-primary" style="margin-top: 1rem;">
+     Download PDF
+</button>
+
             </div>
         </div>
     </div>
 
     <script>
         // Course data
+        
         const coursesByFaculty = {
             'Computer Science & IT': [
                 'Computer Science',
@@ -666,6 +675,77 @@
 
             isLoading = false;
         }
-    </script>
+        
+async function generatePDF() {
+  const { jsPDF } = window.jspdf;
+  const doc = new jsPDF();
+  let y = 10;
+
+  // Parse from localStorage
+  const user = JSON.parse(localStorage.getItem('user')) || {};
+  const personalInfo = JSON.parse(localStorage.getItem('personalInfo')) || {};
+  const educationInfo = JSON.parse(localStorage.getItem('educationInfo')) || {};
+  const courseProgramInfo = JSON.parse(localStorage.getItem('courseProgramInfo')) || {};
+
+  doc.setFont("helvetica", "bold");
+  doc.setFontSize(16);
+  doc.text("University Admission Application", 10, y);
+  y += 10;
+
+  doc.setFont("helvetica", "normal");
+  doc.setFontSize(12);
+
+  const addSection = (title, fields) => {
+    doc.setFont("helvetica", "bold");
+    doc.text(title, 10, y);
+    y += 6;
+    doc.setFont("helvetica", "normal");
+    fields.forEach(([label, value]) => {
+      doc.text(`${label}: ${value || 'Not Provided'}`, 12, y);
+      y += 6;
+      if (y > 270) {
+        doc.addPage();
+        y = 10;
+      }
+    });
+    y += 4;
+  };
+
+  addSection("User Account", [
+    ["Name", user.name],
+    ["Email", user.email]
+  ]);
+
+  addSection("Personal Info", [
+    ["Full Name", personalInfo.fullName],
+    ["Gender", personalInfo.gender],
+    ["Date of Birth", personalInfo.dob],
+    ["Contact", personalInfo.contact],
+    ["Address", personalInfo.address]
+  ]);
+
+  addSection("Education Info", [
+    ["Matric Board", educationInfo.matric],
+    ["Matric Marks", educationInfo.matricMarks],
+    ["Inter Board", educationInfo.inter],
+    ["Inter Marks", educationInfo.interMarks],
+    ["Grades", educationInfo.grades],
+    ["Year", educationInfo.year],
+    ["Field of Interest", educationInfo.interestField],
+    ["Other Qualifications", educationInfo.otherQualifications]
+  ]);
+
+  addSection("Course & Program Info", [
+    ["Course", courseProgramInfo.course],
+    ["Program", courseProgramInfo.program]
+  ]);
+
+  doc.save("Admission_Application.pdf");
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  document.getElementById('downloadPdfBtn').addEventListener('click', generatePDF);
+});
+</script>
 </body>
 </html>
