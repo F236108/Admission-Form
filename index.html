@@ -710,7 +710,9 @@
         courseReview.innerHTML = `
                 <div class="review-item">
                     <span class="review-label">Faculty:</span>
-        <span class="review-value">${data.faculty || "Not provided"}</span>
+                    <span class="review-value">${
+                      data.faculty || "Not provided"
+                    }</span>
                 </div>
                 <div class="review-item">
                     <span class="review-label">Course:</span>
@@ -802,6 +804,47 @@
         if (!validateStep(3)) return;
 
         const data = collectFormData();
+        // Save data to localStorage
+        localStorage.setItem(
+          "user",
+          JSON.stringify({
+            name: data.fullName,
+            email: data.email,
+          })
+        );
+
+        localStorage.setItem(
+          "personalInfo",
+          JSON.stringify({
+            fullName: data.fullName,
+            gender: data.gender,
+            dob: data.dateOfBirth,
+            contact: data.phone,
+            address: data.address,
+          })
+        );
+
+        localStorage.setItem(
+          "educationInfo",
+          JSON.stringify({
+            matric: data.highSchoolName,
+            matricMarks: data.cgpa,
+            inter: data.previousDegree,
+            interMarks: data.university,
+            grades: data.cgpa,
+            year: data.graduationYear,
+            interestField: data.faculty,
+            otherQualifications: "",
+          })
+        );
+
+        localStorage.setItem(
+          "courseProgramInfo",
+          JSON.stringify({
+            course: data.course,
+            program: data.degreeLevel,
+          })
+        );
 
         isLoading = true;
         nextBtn.innerHTML = '<div class="loading-spinner"></div> Submitting...';
@@ -844,12 +887,12 @@
         const logoBase64 = await getImageBase64(
           "https://upload.wikimedia.org/wikipedia/en/2/2e/Agriculture_University_Faisalabad_emblem.png"
         ); // replace with your logo URL
-        doc.addImage(logoBase64, "PNG", 150, 5, 24, 14); // (img, type, x, y, width, height)
+        doc.addImage(logoBase64, "PNG", 150, 5, 25, 13); // (img, type, x, y, width, height)
 
         // Title
         doc.setFont("helvetica", "bold");
         doc.setFontSize(18);
-        doc.text("                 University Admission Application", 10, y);
+        doc.text("                University Admission Application", 10, y);
         y += 10;
 
         doc.setLineWidth(0.5);
